@@ -1,7 +1,7 @@
-import javax.sound.midi.SysexMessage;
 import java.util.*;
 
 public class Maze {
+    //Attributes
     private int[] dimensions;
     private int[] start;
     private int[] finish;
@@ -12,10 +12,11 @@ public class Maze {
         {-1, 0},
         {0, -1}
     };
-    Set<int[]> visited = new HashSet<int[]>();
+    private Set<int[]> visited = new HashSet<>();
 
+    //Constructors
     public Maze(int[] dimensions, int[] start, int[] finish, char[][] map){
-        this.dimensions = getDimensions();
+        this.dimensions = dimensions;
         this.start = start;
         this.finish = finish;
         this.map = map;
@@ -24,39 +25,23 @@ public class Maze {
         this.markMap(finish,'E');
     }
 
+    //Getters&Setters
     public char[][] getMap() {
         return map;
-    }
-    public void setMap(char[][] map) {
-        this.map = map;
-    }
-    public int[] getDimensions() {
-        return dimensions;
-    }
-    public void setDimensions(int[] dimensions) {
-        this.dimensions = dimensions;
     }
     public int[] getStart() {
         return start;
     }
-    public void setStart(int[] start) {
-        this.start = start;
-    }
-    public int[] getFinish() {
-        return finish;
-    }
-    public void setFinish(int[] finish) {
-        this.finish = finish;
-    }
 
 
-    public void markMap(int[] loc){
+    //Methods
+    private void markMap(int[] loc){
         int x = loc[0];
         int y = loc[1];
         this.map[y][x] = 'x';
     }
 
-    public void markMap(int[] loc, char marker){
+    private void markMap(int[] loc, char marker){
         int x = loc[0];
         int y = loc[1];
         this.map[y][x] = marker;
@@ -95,7 +80,7 @@ public class Maze {
         }
     }
 
-    public boolean validate_move(int[] loc){
+    private boolean validate_move(int[] loc){
         boolean valid = false;
 
         if (this.getMap()[loc[1]][loc[0]] != '1'){
